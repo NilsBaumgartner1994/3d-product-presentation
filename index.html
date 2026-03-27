@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Product Presentation</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.168.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.168.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Three.js canvas -->
+  <canvas id="canvas"></canvas>
+
+  <!-- Top bar -->
+  <header id="topbar">
+    <span class="logo">🛋️ Product Renderer</span>
+    <span class="subtitle">Drop an STL file to place it in the scene</span>
+  </header>
+
+  <!-- Drop overlay (shown when no model is loaded) -->
+  <div id="drop-overlay">
+    <div class="drop-box">
+      <div class="drop-icon">📦</div>
+      <h2>Drop your STL file here</h2>
+      <p>or click to select a file</p>
+      <input type="file" id="file-input" accept=".stl" />
+      <label for="file-input" class="btn-primary">Browse file…</label>
+    </div>
+  </div>
+
+  <!-- Drop highlight (shown while dragging over window) -->
+  <div id="drag-highlight"></div>
+
+  <!-- Bottom control panel -->
+  <div id="controls-panel">
+    <div class="panel-section">
+      <span class="panel-label">Material</span>
+      <div class="btn-group">
+        <button class="mat-btn active" data-material="plastic">Plastic</button>
+        <button class="mat-btn" data-material="metal">Metal</button>
+        <button class="mat-btn" data-material="matte">Matte</button>
+        <button class="mat-btn" data-material="glossy">Glossy</button>
+      </div>
+    </div>
+
+    <div class="panel-section">
+      <span class="panel-label">Color</span>
+      <input type="color" id="color-picker" value="#ffffff" title="Model color" />
+    </div>
+
+    <div class="panel-section">
+      <span class="panel-label">Scale</span>
+      <input type="range" id="scale-slider" min="0.2" max="3.0" step="0.05" value="1.0" title="Scale" />
+      <span id="scale-value">1.0×</span>
+    </div>
+
+    <div class="panel-section panel-actions">
+      <button id="screenshot-btn" class="btn-primary" title="Save render as PNG">📷 Screenshot</button>
+      <button id="reset-btn" class="btn-secondary" title="Remove model" style="display:none;">🗑 Remove</button>
+    </div>
+  </div>
+
+  <!-- Info badge shown when model is loaded -->
+  <div id="info-badge" style="display:none;">
+    <span>✓ Model loaded — use mouse to orbit, scroll to zoom</span>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

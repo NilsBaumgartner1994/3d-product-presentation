@@ -1,0 +1,281 @@
+/* ── Reset & base ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --clr-bg:       #0f0f13;
+  --clr-surface:  rgba(20, 20, 30, 0.75);
+  --clr-border:   rgba(255,255,255,0.10);
+  --clr-accent:   #e0a850;
+  --clr-accent2:  #5ba3d9;
+  --clr-text:     #f0ece4;
+  --clr-muted:    rgba(240,236,228,0.55);
+  --radius:       12px;
+  --blur:         backdrop-filter: blur(16px) saturate(160%);
+}
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 14px;
+}
+
+/* ── Canvas ─────────────────────────────────────────────────── */
+#canvas {
+  position: fixed;
+  inset: 0;
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none;
+}
+
+/* ── Top bar ─────────────────────────────────────────────────── */
+#topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: var(--clr-surface);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border-bottom: 1px solid var(--clr-border);
+  z-index: 20;
+}
+
+.logo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--clr-accent);
+}
+
+.subtitle {
+  font-size: 0.82rem;
+  color: var(--clr-muted);
+}
+
+/* ── Drop overlay ────────────────────────────────────────────── */
+#drop-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 15;
+  pointer-events: none;
+}
+
+.drop-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px 52px;
+  background: var(--clr-surface);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 2px dashed var(--clr-border);
+  border-radius: 20px;
+  text-align: center;
+  pointer-events: all;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.drop-box:hover {
+  border-color: var(--clr-accent);
+  transform: scale(1.01);
+}
+
+.drop-icon {
+  font-size: 3.5rem;
+  line-height: 1;
+  filter: drop-shadow(0 4px 12px rgba(224,168,80,0.4));
+}
+
+.drop-box h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--clr-text);
+}
+
+.drop-box p {
+  font-size: 0.85rem;
+  color: var(--clr-muted);
+}
+
+/* hide the actual file input but keep it accessible */
+#file-input {
+  position: absolute;
+  width: 0; height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Drag highlight (covers entire viewport while dragging) ─── */
+#drag-highlight {
+  position: fixed;
+  inset: 0;
+  border: 3px solid var(--clr-accent);
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 30;
+}
+
+#drag-highlight.active {
+  opacity: 1;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-block;
+  padding: 9px 20px;
+  border-radius: 8px;
+  background: var(--clr-accent);
+  color: #1a1200;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  border: none;
+  transition: filter 0.15s, transform 0.1s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary:hover  { filter: brightness(1.12); transform: translateY(-1px); }
+.btn-primary:active { filter: brightness(0.95); transform: translateY(0);    }
+
+.btn-secondary {
+  display: inline-block;
+  padding: 9px 18px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--clr-text);
+  font-weight: 500;
+  font-size: 0.88rem;
+  cursor: pointer;
+  border: 1px solid var(--clr-border);
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.25); }
+
+/* ── Bottom control panel ────────────────────────────────────── */
+#controls-panel {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 20px;
+  background: var(--clr-surface);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  z-index: 20;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.panel-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--clr-muted);
+  white-space: nowrap;
+}
+
+/* Material buttons */
+.btn-group {
+  display: flex;
+  gap: 4px;
+}
+
+.mat-btn {
+  padding: 6px 11px;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--clr-text);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--clr-border);
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.mat-btn:hover  { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.25); }
+.mat-btn.active {
+  background: var(--clr-accent);
+  color: #1a1200;
+  border-color: var(--clr-accent);
+  font-weight: 700;
+}
+
+/* Color picker */
+#color-picker {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--clr-border);
+  background: none;
+  cursor: pointer;
+  padding: 2px;
+  overflow: hidden;
+}
+#color-picker::-webkit-color-swatch-wrapper { padding: 0; }
+#color-picker::-webkit-color-swatch { border-radius: 50%; border: none; }
+#color-picker::-moz-color-swatch    { border-radius: 50%; border: none; }
+
+/* Scale slider */
+#scale-slider {
+  width: 90px;
+  accent-color: var(--clr-accent);
+  cursor: pointer;
+}
+
+#scale-value {
+  font-size: 0.78rem;
+  color: var(--clr-muted);
+  min-width: 32px;
+}
+
+.panel-actions { gap: 8px; }
+
+/* ── Info badge ──────────────────────────────────────────────── */
+#info-badge {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  padding: 8px 14px;
+  background: var(--clr-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--clr-border);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: var(--clr-muted);
+  z-index: 20;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  #controls-panel { gap: 12px; padding: 10px 14px; bottom: 12px; }
+  .mat-btn { padding: 5px 8px; font-size: 0.75rem; }
+  .drop-box { padding: 28px 28px; }
+}
