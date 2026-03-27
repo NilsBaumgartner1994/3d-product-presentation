@@ -48,7 +48,7 @@ controls.update();
 const HDR_ENVS = [
   {
     label: 'Venice Sunset',
-    url: 'https://cdn.jsdelivr.net/npm/three@0.168.0/examples/textures/equirectangular/venice_sunset_1k.hdr',
+    url: 'https://threejs.org/examples/textures/equirectangular/venice_sunset_1k.hdr',
     sunDir: new THREE.Vector3(-1.5, 1.0, 0.5).normalize(),
     sunColor: 0xffb060,
     sunIntensity: 2.0,
@@ -59,7 +59,7 @@ const HDR_ENVS = [
   },
   {
     label: 'Royal Esplanade',
-    url: 'https://cdn.jsdelivr.net/npm/three@0.168.0/examples/textures/equirectangular/royal_esplanade_1k.hdr',
+    url: 'https://threejs.org/examples/textures/equirectangular/royal_esplanade_1k.hdr',
     sunDir: new THREE.Vector3(1, 2, 1).normalize(),
     sunColor: 0xfff4d6,
     sunIntensity: 2.5,
@@ -70,7 +70,7 @@ const HDR_ENVS = [
   },
   {
     label: 'Moonless Golf',
-    url: 'https://cdn.jsdelivr.net/npm/three@0.168.0/examples/textures/equirectangular/moonless_golf_1k.hdr',
+    url: 'https://threejs.org/examples/textures/equirectangular/moonless_golf_1k.hdr',
     sunDir: new THREE.Vector3(0.5, 1.0, 1.0).normalize(),
     sunColor: 0x8899ff,
     sunIntensity: 0.5,
@@ -81,7 +81,7 @@ const HDR_ENVS = [
   },
   {
     label: 'Quarry',
-    url: 'https://cdn.jsdelivr.net/npm/three@0.168.0/examples/textures/equirectangular/quarry_01_1k.hdr',
+    url: 'https://threejs.org/examples/textures/equirectangular/quarry_01_1k.hdr',
     sunDir: new THREE.Vector3(2, 3, 1).normalize(),
     sunColor: 0xffffff,
     sunIntensity: 2.2,
