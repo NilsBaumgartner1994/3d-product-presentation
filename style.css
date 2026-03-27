@@ -255,6 +255,23 @@ html, body {
   min-width: 32px;
 }
 
+/* Environment select */
+#env-select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.07);
+  color: var(--clr-text);
+  font-size: 0.82rem;
+  border: 1px solid var(--clr-border);
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+#env-select:hover  { border-color: rgba(255,255,255,0.25); }
+#env-select:focus  { border-color: var(--clr-accent); }
+#env-select option { background: #1a1a2a; color: var(--clr-text); }
+
 .panel-actions { gap: 8px; }
 
 /* ── Info badge ──────────────────────────────────────────────── */
