@@ -92,7 +92,7 @@ const HDR_ENVS = [
   },
   {
     label: 'Living Room',
-    url: 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/residential_living_room_1k.hdr',
+    url: 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/cayley_interior_1k.hdr',
     sunDir: new THREE.Vector3(1, 1.5, 0.5).normalize(),
     sunColor: 0xfff5e0,
     sunIntensity: 1.2,
@@ -103,7 +103,7 @@ const HDR_ENVS = [
   },
   {
     label: 'Dining Room',
-    url: 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/dining_room_1k.hdr',
+    url: 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/combination_room_1k.hdr',
     sunDir: new THREE.Vector3(-1, 1.5, 1).normalize(),
     sunColor: 0xffe8c0,
     sunIntensity: 1.0,
@@ -114,7 +114,7 @@ const HDR_ENVS = [
   },
   {
     label: 'Kitchen',
-    url: 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/kitchen_1k.hdr',
+    url: 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/kiara_interior_1k.hdr',
     sunDir: new THREE.Vector3(0.5, 2, 1).normalize(),
     sunColor: 0xffffff,
     sunIntensity: 1.5,
